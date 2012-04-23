@@ -1,6 +1,6 @@
 class SeoFriendlyUrlsGrailsPlugin {
     // the plugin version
-    def version = "1.0.0.M1"
+    def version = "1.0.0"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.3 > *"
     // the other plugins this plugin depends on
