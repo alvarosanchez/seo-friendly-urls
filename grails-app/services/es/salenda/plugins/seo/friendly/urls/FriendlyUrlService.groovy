@@ -3,6 +3,8 @@ package es.salenda.plugins.seo.friendly.urls
 import java.util.regex.Pattern
 
 class FriendlyUrlService {
+	
+	static transactional = false
 
 	/**
 	 * This method transforms the text passed as an argument to a text without spaces,
