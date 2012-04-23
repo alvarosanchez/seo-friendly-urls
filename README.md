@@ -8,11 +8,63 @@ Useful if you want SEO-friendly URL's like `/book/the-lord-of-the-rings` instead
 The code is borrowed from Wordpress's [formatting.php](http://core.svn.wordpress.org/trunk/wp-includes/formatting.php), 
 and initially ported to Groovy by Jesús Lanchas.
 
-## Grails service
+## Usage
 
 The plugin provides a simple Grails service, `friendlyUrlService`, which you can inject like any other service in your application.
+That service has only one mehod, `sanitizeWithDashes(text)`.
 
-That service has only one mehod, `sanitizeWithDashes(text)`. The following is a snippet of the provided 
+For convenience, the method `asFriendlyUrl()` is also added to the String meta class.
+
+So, given this domain class:
+``` groovy
+class Book {
+	String title
+	String sanitizedTitle
+	
+	def beforeInsert() {
+		sanitizedTitle = title.asFriendlyUrl()
+	}
+	
+	static constraints = {
+		sanitizedTitle unique:true	//As an alternative, you may decide to make sanitizedTitle replace default id.
+	}
+}
+```
+
+And given the following URL mapping: 
+``` groovy
+class UrlMappings {
+
+	static mappings = {
+		"/book/$title"(controller:'book', action:'show')
+	
+		"/$controller/$action?/$id?"{
+			constraints {
+				// apply constraints here
+			}
+		}
+
+	}
+}
+```
+ 
+You can do the following in your controller:
+
+``` groovy
+class BookController {
+
+	def show() {
+		[book: Book.findBySanitizedTitle(params.title)]
+	}
+
+}
+```
+
+Note that you can also use `friendlyUrlService.sanitizeWithDashes()` in your controller.
+
+## Examples
+
+The following is a snippet of the provided 
 [Spock unit test](seo-friendly-urls/blob/master/test/unit/es/salenda/plugins/seo/friendly/urls/FriendlyUrlServiceSpec.groovy):
 
 ``` groovy
@@ -23,8 +75,3 @@ string                      | sanitized
 "Los 3 Mosqueteros"         | "los-3-mosqueteros"       //Numbers
 "Real Madrid® C.F."         | "real-madrid-cf"          //Edge cases
 ```
-## String `asFriendlyUrl()` dynamic method
-
-For convenience, the method `asFriendlyUrl()` is added to the String meta class, so you can just do:
-
-	def sanitized = "Raúl González Blanco".asFriendlyUrl()
