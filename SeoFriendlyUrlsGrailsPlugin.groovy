@@ -10,7 +10,7 @@ class SeoFriendlyUrlsGrailsPlugin {
         "grails-app/views/error.gsp"
     ]
 
-    def title = "Seo Friendly URL's Plugin" // Headline display name of the plugin
+    def title = "SEO Friendly URL's Plugin" // Headline display name of the plugin
     def author = "Álvaro Sánchez-Mariscal"
     def authorEmail = "alvaro.sanchez@salenda.es"
     def description = '''\
