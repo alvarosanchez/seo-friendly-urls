@@ -14,14 +14,15 @@ Grails service
 
 The plugin provides a simple Grails service, `friendlyUrlService`, which you can inject like any other service in your application.
 
-That service has only one mehod, `sanitizeWithDashes(text)`. The following is a snippet of the Spock unit test provided:
+That service has only one mehod, `sanitizeWithDashes(text)`. The following is a snippet of the provided 
+[Spock unit test](seo-friendly-urls/blob/master/test/unit/es/salenda/plugins/seo/friendly/urls/FriendlyUrlServiceSpec.groovy):
 
-	string						| sanitized
-	"The Lord of the Rings"		| "the-lord-of-the-rings"	//Basics
-	"Raúl González Blanco"		| "raul-gonzalez-blanco"	//Accents
-	"España"					| "espana"					//N-tilde chars
-	"Los 3 Mosqueteros"			| "los-3-mosqueteros"		//Numbers
-	"Real Madrid® C.F."			| "real-madrid-cf"			//Edge cases
+	string                      | sanitized
+	"The Lord of the Rings"     | "the-lord-of-the-rings"   //Basics
+	"Raúl González Blanco"      | "raul-gonzalez-blanco"    //Accents
+	"España"                    | "espana"                  //N-tilde chars
+	"Los 3 Mosqueteros"         | "los-3-mosqueteros"       //Numbers
+	"Real Madrid® C.F."         | "real-madrid-cf"          //Edge cases
 		
 String `asFriendlyUrl()` dynamic method
 ---------------------------------------
