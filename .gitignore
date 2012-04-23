@@ -1,0 +1,24 @@
+# web application files
+/web-app/WEB-INF
+
+# IDE support files
+/.classpath
+/.launch
+/.project
+/.settings
+/*.launch
+/*.tmproj
+/ivy*
+/eclipse
+
+# logs
+/stacktrace.log
+/test/reports
+/logs
+
+# plugin release file
+/*.zip
+
+# "temporary" build files
+/target
+/target-eclipse
