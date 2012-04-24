@@ -4,6 +4,8 @@ grails.project.test.reports.dir = "target/test-reports"
 grails.project.target.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
+grails.release.scm.enabled = false
+
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -12,6 +14,7 @@ grails.project.dependency.resolution = {
     }
     log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     repositories {
+		grailsRepo "http://grails.org/plugins"
         grailsCentral()
         // uncomment the below to enable remote dependency resolution
         // from public Maven repositories
@@ -29,10 +32,12 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        build(":tomcat:$grailsVersion",
-              ":release:1.0.0") {
+        build(":tomcat:$grailsVersion") {
             export = false
         }
+		build ":release:2.0.0", { 
+			export = false 
+		}
 		test ":spock:0.6"
     }
 }
