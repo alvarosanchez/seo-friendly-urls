@@ -6,7 +6,7 @@ eg, from `"The Lord of the Rings"` to `"the-lord-of-the-rings"`.
 Useful if you want SEO-friendly URL's like `/book/the-lord-of-the-rings` instead of `/book/show/123`.
 
 The code is borrowed from Wordpress's [formatting.php](http://core.svn.wordpress.org/trunk/wp-includes/formatting.php), 
-and initially ported to Groovy by Jesús Lanchas.
+and initially ported to Groovy by [Jesús Lanchas](https://github.com/chechu).
 
 ## Usage
 
