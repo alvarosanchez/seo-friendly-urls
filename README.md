@@ -21,12 +21,12 @@ class Book {
 	String title
 	String sanitizedTitle
 	
-	def beforeInsert() {
-		sanitizedTitle = title.asFriendlyUrl()
+	def beforeValidate() {
+		if (!sanitizedTitle) sanitizedTitle = title?.asFriendlyUrl()
 	}
 	
 	static constraints = {
-		sanitizedTitle unique:true	//As an alternative, you may decide to make sanitizedTitle replace default id.
+		sanitizedTitle unique:true	//As an alternative, you may decide to make sanitizedTitle replace the default id.
 	}
 }
 ```
@@ -36,7 +36,7 @@ And given the following URL mapping:
 class UrlMappings {
 
 	static mappings = {
-		"/book/$title"(controller:'book', action:'show')
+		"/book/$sanitizedTitle"(controller:'book', action:'show')
 	
 		"/$controller/$action?/$id?"{
 			constraints {
@@ -54,7 +54,7 @@ You can do the following in your controller:
 class BookController {
 
 	def show() {
-		[book: Book.findBySanitizedTitle(params.title)]
+		[book: Book.findBySanitizedTitle(params.sanitizedTitle)]
 	}
 
 }
