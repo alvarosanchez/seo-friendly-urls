@@ -18,6 +18,7 @@ class FriendlyUrlServiceSpec extends UnitSpec {
 		"España"					| "espana"					//N-tilde chars
 		"Los 3 Mosqueteros"			| "los-3-mosqueteros"		//Numbers
 		"Real Madrid® C.F."			| "real-madrid-cf"			//Edge cases						
+		"Článok"					| "clanok"
 	}
 	
 }
