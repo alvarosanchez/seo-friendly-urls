@@ -13,6 +13,7 @@ class FriendlyUrlServiceSpec extends UnitSpec {
 		
 		where:
 		string						| sanitized
+		""							| ""						//Empty string
 		"The Lord of the Rings"		| "the-lord-of-the-rings"	//Basics
 		"Raúl González Blanco"		| "raul-gonzalez-blanco"	//Accents
 		"España"					| "espana"					//N-tilde chars
