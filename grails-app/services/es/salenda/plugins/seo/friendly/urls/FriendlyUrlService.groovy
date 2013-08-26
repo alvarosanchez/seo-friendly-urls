@@ -14,6 +14,9 @@ class FriendlyUrlService {
 	 * http://core.svn.wordpress.org/trunk/wp-includes/formatting.php
 	 */
 	def sanitizeWithDashes(text) {
+
+		if(!text) return ""
+
 		// Preserve escaped octets
 		text = text.replaceAll('%([a-fA-F0-9][a-fA-F0-9])','---$1---')
 		text = text.replaceAll('%','')
